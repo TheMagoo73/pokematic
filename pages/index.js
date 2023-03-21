@@ -14,6 +14,7 @@ export default function Home({ pokemon, nextPage, previousPage, }) {
         <title>Pokematic</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet"/>
       </Head>
       <>
 
@@ -23,8 +24,8 @@ export default function Home({ pokemon, nextPage, previousPage, }) {
             <h2 className='pb-4'>
               <img src='/pokematic.png' alt="Pokematic"></img>
             </h2>
-            <h3 className='pb-16 text-3xl font-bold text-blue-600'>
-              The internet Pokemon index!
+            <h3 className='font-pokemon tracking-widest pb-16 text-3xl font-bold text-blue-600'>
+              The Internet Pokemon index!
             </h3>
 
             <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
@@ -39,7 +40,7 @@ export default function Home({ pokemon, nextPage, previousPage, }) {
             <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 pt-16">
               {previousPage ? (<button
                 type="button"
-                className="rounded-md text-yellow-400 bg-blue-600 py-2.5 px-3.5 text-xl font-bold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                className="tracking-widest font-pokemon rounded-md text-yellow-400 bg-blue-600 py-2.5 px-3.5 text-2xl text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 onClick={() => router.push({pathname: '/', query: `page=${previousPage}`})}
               >
                 Previous
@@ -47,7 +48,7 @@ export default function Home({ pokemon, nextPage, previousPage, }) {
 
               {nextPage ? <button
                 type="button"
-                className="rounded-md text-yellow-400 bg-blue-600 py-2.5 px-3.5 text-xl font-bold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                className="tracking-widest font-pokemon rounded-md text-yellow-400 bg-blue-600 py-2.5 px-3.5 text-2xl shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 onClick={() => router.push({pathname: '/', query: `page=${nextPage}`})}
               >
                 Next

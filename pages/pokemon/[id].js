@@ -1,4 +1,5 @@
 import axios from "axios"
+import Head from "next/head"
 import { useRouter } from "next/router"
 import TypeBadge from "../../components/TypeBadge/TypeBadge"
 
@@ -11,6 +12,10 @@ export default function ({ name, image, types, stats }) {
   }
 
   return (
+    <>
+    <Head>
+      <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet"/>
+    </Head>
 
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
@@ -18,11 +23,11 @@ export default function ({ name, image, types, stats }) {
         {/* Pokemon details */}
         <div className="lg:max-w-lg lg:self-end"> 
 
-          <div className="mb-4 font-semibold text-md">
+          <div className="mb-8 font-semibold text-md">
             <a href="#" onClick={e => handleBack(e)}>&lt;Back</a>
           </div>
         
-          <h1 className="font-pokemon tracking-wider text-3xl font-bold tracking-tight text-blue-600 sm:text-4xl">{name.toUpperCase()}</h1>
+          <h1 className="font-pokemon tracking-wider text-3xl font-bold tracking-tight text-blue-600 sm:text-4xl mb-4 sm:mb-8">{name.toUpperCase()}</h1>
 
           <ul className="flex flex-wrap mb-6">
             {
@@ -73,7 +78,8 @@ export default function ({ name, image, types, stats }) {
         </div>
 
       </div>
-    </div> 
+    </div>
+    </>
   )
 }
 

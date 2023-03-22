@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import PokeCard from '../components/PokeCard/PokeCard'
 
+const pokemonPerPage = 6
+
 export default function Home({ pokemon, nextPage, previousPage, }) {
 
   const router = useRouter()
@@ -70,10 +72,10 @@ export default function Home({ pokemon, nextPage, previousPage, }) {
 export const getServerSideProps = async ({ query }) => {
 
   const page = parseInt(query.page) || 1
-  const offset = (page - 1) * 18
+  const offset = (page - 1) * pokemonPerPage
 
   const { data: pokeIndex} = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon?limit=18&offset=${offset}`
+    `https://pokeapi.co/api/v2/pokemon?limit=${pokemonPerPage}&offset=${offset}`
   )
 
   return {props: {

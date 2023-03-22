@@ -23,7 +23,7 @@ export default function PokeCard({id, ...props}) {
       </div>
       
       <div className="flex flex-1 flex-col space-y-2 p-4">
-        <h3 className="text-md font-large text-gray-900">
+        <h3 className="tracking-wider text-3xl font-light text-blue-600 font-pokemon">
             {pokemon?.name?.toUpperCase()}
         </h3>
         <div className="flex flex-1 flex-col justify-end">

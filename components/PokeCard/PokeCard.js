@@ -1,4 +1,5 @@
 import axios from "axios"
+import Link from "next/link"
 import useSWR from 'swr'
 
 export default function PokeCard({id, ...props}) {
@@ -8,6 +9,7 @@ export default function PokeCard({id, ...props}) {
   const { data: pokemon, error } = useSWR(`https://pokeapi.co/api/v2/pokemon/${id}`, fetcher) 
 
   return (
+    <Link href={`/pokemon/${id}`}>
     <div
       key={id}
       className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
@@ -31,5 +33,6 @@ export default function PokeCard({id, ...props}) {
         </div>
       </div>
     </div>
+    </Link>
   )
 }

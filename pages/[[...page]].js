@@ -43,7 +43,7 @@ export default function Home({ pokemon, nextPage, previousPage, }) {
               {previousPage ? (<button
                 type="button"
                 className="tracking-widest font-pokemon rounded-md text-yellow-400 bg-blue-600 py-2.5 px-3.5 text-2xl text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                onClick={() => router.push({pathname: '/', query: `page=${previousPage}`})}
+                onClick={() => router.push({pathname: `/${previousPage}`})}
               >
                 Previous
               </button>) : (<>{` `}</>)}
@@ -51,7 +51,7 @@ export default function Home({ pokemon, nextPage, previousPage, }) {
               {nextPage ? <button
                 type="button"
                 className="tracking-widest font-pokemon rounded-md text-yellow-400 bg-blue-600 py-2.5 px-3.5 text-2xl shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                onClick={() => router.push({pathname: '/', query: `page=${nextPage}`})}
+                onClick={() => router.push({pathname: `/${nextPage}`})}
               >
                 Next
               </button> : (<></>)}
@@ -70,10 +70,35 @@ export default function Home({ pokemon, nextPage, previousPage, }) {
   )
 }
 
-export const getServerSideProps = async ({ query }) => {
+export const getStaticPaths = async () => {
 
-  const page = parseInt(query.page) || 1
-  const offset = (page - 1) * pokemonPerPage
+  const { data: { count }} = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon?limit=1`
+  )
+
+  const totalPages = Math.ceil(parseInt(count, 10) /  pokemonPerPage)
+
+  const paths = [
+    { params: { page: [] }}
+  ]
+ 
+  for(let i = 1; i <= totalPages; i++) {
+    paths.push({
+      params: { page: [`${i}`] }
+    })
+  }
+
+  return ({ 
+    paths,
+    fallback: 'blocking' 
+  })
+
+}
+
+export const getStaticProps = async ({ params: { page } }) => {
+
+  const currentPage = parseInt(page) || 1
+  const offset = (currentPage - 1) * pokemonPerPage
 
   const { data: pokeIndex} = await axios.get(
     `https://pokeapi.co/api/v2/pokemon?limit=${pokemonPerPage}&offset=${offset}`
@@ -81,7 +106,7 @@ export const getServerSideProps = async ({ query }) => {
 
   return {props: {
     pokemon: pokeIndex.results.map(p => ({url: p.url, id: p.url.split('/')[6]})),
-    nextPage: pokeIndex.next ? page + 1 : null,
-    previousPage: pokeIndex.previous ? page -1  : null,
+    nextPage: pokeIndex.next ? currentPage + 1 : null,
+    previousPage: pokeIndex.previous ? currentPage -1  : null,
   }}
 }

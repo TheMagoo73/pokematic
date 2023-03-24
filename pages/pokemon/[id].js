@@ -84,9 +84,13 @@ export default function ({ name, image, types, stats }) {
 }
 
 export async function getStaticPaths() {
-  
+
+  const { data: { count: totalPokemonCount }} = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon?limit=1`
+  )
+
   const { data: pokeIndex} = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon?limit=25`
+    `https://pokeapi.co/api/v2/pokemon?limit=${totalPokemonCount}`
   )
 
   const paths = pokeIndex.results.map(p => ({

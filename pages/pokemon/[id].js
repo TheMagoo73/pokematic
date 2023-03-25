@@ -24,10 +24,15 @@ export default function ({ name, image, types, stats }) {
         <div className="lg:max-w-lg lg:self-end"> 
 
           <div className="mb-8 font-semibold text-md">
-            <a href="#" onClick={e => handleBack(e)}>&lt;Back</a>
+            <a href="#" onClick={e => handleBack(e)} data-test="nav-back">&lt;Back</a>
           </div>
         
-          <h1 className="font-pokemon tracking-wider text-3xl font-bold tracking-tight text-blue-600 sm:text-4xl mb-4 sm:mb-8">{name.toUpperCase()}</h1>
+          <h1 
+            className="font-pokemon tracking-wider text-3xl font-bold tracking-tight text-blue-600 sm:text-4xl mb-4 sm:mb-8"
+            data-test="pokemon-name"
+          >
+            {name.toUpperCase()}
+          </h1>
 
           <ul className="flex flex-wrap mb-6">
             {
@@ -73,7 +78,7 @@ export default function ({ name, image, types, stats }) {
 
         <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
           <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg">
-            <img src={image} className="h-full w-full object-cover object-center" />
+            <img src={image} className="h-full w-full object-cover object-center" data-test="pokemon-image"/>
           </div>
         </div>
 

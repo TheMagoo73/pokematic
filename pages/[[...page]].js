@@ -44,6 +44,7 @@ export default function Home({ pokemon, nextPage, previousPage, }) {
                 type="button"
                 className="tracking-widest font-pokemon rounded-md text-yellow-400 bg-blue-600 py-2.5 px-3.5 text-2xl text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 onClick={() => router.push({pathname: `/${previousPage}`})}
+                data-test="nav-previous"
               >
                 Previous
               </button>) : (<>{` `}</>)}
@@ -52,6 +53,7 @@ export default function Home({ pokemon, nextPage, previousPage, }) {
                 type="button"
                 className="tracking-widest font-pokemon rounded-md text-yellow-400 bg-blue-600 py-2.5 px-3.5 text-2xl shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 onClick={() => router.push({pathname: `/${nextPage}`})}
+                data-test="nav-next"
               >
                 Next
               </button> : (<></>)}

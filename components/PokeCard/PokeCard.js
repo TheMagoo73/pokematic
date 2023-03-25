@@ -13,6 +13,7 @@ export default function PokeCard({id, ...props}) {
     <div
       key={id}
       className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
+      data-test="pokemon-card"
     >
 
       <div className="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
@@ -23,7 +24,7 @@ export default function PokeCard({id, ...props}) {
       </div>
       
       <div className="flex flex-1 flex-col space-y-2 p-4">
-        <h3 className="tracking-wider text-3xl font-light text-blue-600 font-pokemon">
+        <h3 className="tracking-wider text-3xl font-light text-blue-600 font-pokemon" data-test="pokemon-name">
             {pokemon?.name?.toUpperCase()}
         </h3>
         <div className="flex flex-1 flex-col justify-end">

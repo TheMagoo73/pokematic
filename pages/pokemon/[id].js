@@ -34,45 +34,45 @@ export default function ({ name, image, types, stats }) {
             {name.toUpperCase()}
           </h1>
 
-          <ul className="flex flex-wrap mb-6">
+          <ul className="flex flex-wrap mb-6" data-test="pokemon-types">
             {
               types?.map(t => (<li key={t}><TypeBadge type={t}/></li>))
             }
           </ul>
 
           <div className="font-extrabold text-xl">Base Stats</div>
-          <table className="min-w-full divide-y divide-gray-300 font-lg">
-            <tbody className="bg-white">
-              <tr>
-                <td>HP</td>
-                <td className="font-bold">{stats.hp}</td>
-              </tr>
-              <tr className='bg-gray-50'>
-                <td>Attack</td>
-                <td className="font-bold">{stats.attack}</td>
-              </tr>
-              <tr>
-                <td>Defense</td>
-                <td className="font-bold">{stats.defense}</td>
-              </tr>
-              <tr className='bg-gray-50'>
-                <td>Sp. Atk</td>
-                <td className="font-bold">{stats['special-attack']}</td>
-              </tr>
-              <tr>
-                <td>Sp. Def</td>
-                <td className="font-bold">{stats['special-defense']}</td>
-              </tr>
-              <tr className='bg-gray-50'>
-                <td>Speed</td>
-                <td className="font-bold">{stats.speed}</td>
-              </tr>
-              <tr>
-                <td>Total</td>
-                <td className="font-extrabold">{stats.total}</td>
-              </tr>
-            </tbody>
-          </table>
+            <table className="min-w-full divide-y divide-gray-300 font-lg" data-test="pokemon-stats">
+              <tbody className="bg-white">
+                <tr>
+                  <td>HP</td>
+                  <td className="font-bold">{stats.hp}</td>
+                </tr>
+                <tr className='bg-gray-50'>
+                  <td>Attack</td>
+                  <td className="font-bold">{stats.attack}</td>
+                </tr>
+                <tr>
+                  <td>Defense</td>
+                  <td className="font-bold">{stats.defense}</td>
+                </tr>
+                <tr className='bg-gray-50'>
+                  <td>Sp. Atk</td>
+                  <td className="font-bold">{stats['special-attack']}</td>
+                </tr>
+                <tr>
+                  <td>Sp. Def</td>
+                  <td className="font-bold">{stats['special-defense']}</td>
+                </tr>
+                <tr className='bg-gray-50'>
+                  <td>Speed</td>
+                  <td className="font-bold">{stats.speed}</td>
+                </tr>
+                <tr>
+                  <td>Total</td>
+                  <td className="font-extrabold">{stats.total}</td>
+                </tr>
+              </tbody>
+            </table>
 
         </div>
 

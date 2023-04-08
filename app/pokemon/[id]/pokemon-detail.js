@@ -74,7 +74,7 @@ export default function PokemonDetail({ name, image, types, stats }) {
 
         <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
           <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg">
-            <img src={image} className="h-full w-full object-cover object-center" data-test="pokemon-image"/>
+            <img src={image} className="h-full w-full object-cover object-center" data-test="pokemon-image" alt={`${name.toUpperCase}`}/>
           </div>
         </div>
 

@@ -20,6 +20,7 @@ export default function PokeCard({id, ...props}) {
         <img
           className="h-full w-full object-cover object-center sm:h-full sm:w-full" 
           src={`https://raw.githubusercontent.com/sashafirsov/pokeapi-sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
+          alt={`${pokemon?.name?.toUpperCase()}`}
         />
       </div>
       

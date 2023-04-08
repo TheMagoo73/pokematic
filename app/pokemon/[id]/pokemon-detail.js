@@ -1,9 +1,9 @@
-import axios from "axios"
-import Head from "next/head"
-import { useRouter } from "next/router"
-import TypeBadge from "../../components/TypeBadge/TypeBadge"
+'use client'
 
-export default function ({ name, image, types, stats }) {
+import { useRouter } from "next/navigation"
+import TypeBadge from "../../../components/TypeBadge/TypeBadge"
+
+export default function PokemonDetail({ name, image, types, stats }) {
 
   const router = useRouter()
 
@@ -13,10 +13,6 @@ export default function ({ name, image, types, stats }) {
 
   return (
     <>
-    <Head>
-      <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet"/>
-    </Head>
-
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
 
@@ -86,39 +82,4 @@ export default function ({ name, image, types, stats }) {
     </div>
     </>
   )
-}
-
-export async function getStaticPaths() {
-
-  const { data: { count: totalPokemonCount }} = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon?limit=1`
-  )
-
-  const { data: pokeIndex} = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon?limit=${totalPokemonCount}`
-  )
-
-  const paths = pokeIndex.results.map(p => ({
-    params: { id:  p.url.split('/')[6] }
-  }))
-
-  return { paths, fallback: 'blocking' }
-}
-
-export async function getStaticProps({ params: { id } }) {
-
-  const { data: pokemon } = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon/${id}`
-  )
-
-  return({
-    props: {
-      name: pokemon.name,
-      image: `https://raw.githubusercontent.com/sashafirsov/pokeapi-sprites/master/sprites/pokemon/other/dream-world/${id}.svg`,
-      types: pokemon.types.sort((p1, p2) => p1.slot - p2.slot).map(p => p.type.name),
-      stats: {
-        ...pokemon.stats.reduce((a, s) => ({...a, [s.stat.name]: s['base_stat']}) , {}),
-        total: pokemon.stats.reduce((a, s) => a + s['base_stat'], 0)}
-    }
-  })
 }

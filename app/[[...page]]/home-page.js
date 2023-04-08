@@ -1,7 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import PokeCard from '../../components/PokeCard/PokeCard'
+import { Suspense, lazy } from "react"
+const PokeCard = lazy(() => import('../../components/PokeCard/PokeCard'))
 
 export default function HomePage({ pokemon, nextPage, previousPage, }) {
 
@@ -18,16 +19,18 @@ export default function HomePage({ pokemon, nextPage, previousPage, }) {
               <img src='/pokematic.png' alt="Pokematic"></img>
             </h2>
             <h3 className='font-pokemon tracking-widest pb-16 text-3xl font-bold text-blue-600'>
-              The Internet Pokemon index (part 2)!
+              The Internet Pokemon index!
             </h3>
 
-            <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-              {
-                pokemon.map(p => (
-                  <PokeCard key={p.id} id={p.id}/>
-                ))
-              }
-            </div>
+            <Suspense fallback={<h4>Loading</h4>}>
+              <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
+                {
+                  pokemon.map(p => (
+                    <PokeCard key={p.id} id={p.id}/>
+                  ))
+                }
+              </div>
+            </Suspense>
 
 
             <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 pt-16">

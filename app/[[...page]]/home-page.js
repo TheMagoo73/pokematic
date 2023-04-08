@@ -9,7 +9,7 @@ export default function HomePage({ pokemon, nextPage, previousPage, }) {
   const router = useRouter()
 
   return (
-    <>
+    <div data-test="home-page">
       <>
 
         <div className="bg-white">
@@ -62,6 +62,6 @@ export default function HomePage({ pokemon, nextPage, previousPage, }) {
 
       </div>
     </>
-  </>
+  </div>
   )
 }

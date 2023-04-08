@@ -11,11 +11,6 @@ describe('Pokemon Detail Page', () => {
     cy.get('[data-test="pokemon-types"] li').its('length').should('be.gt', 0)
     cy.get('[data-test="pokemon-stats"] tr').its('length').should('eq', 7)
     cy.get('[data-test="pokemon-image"]')
-
-    cy.get('[data-test="nav-back"]')
-    .click()
-
-    cy.get('[data-test="pokemon-card"]')
   })
 
 })

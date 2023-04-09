@@ -2,6 +2,9 @@
 
 import { useRouter } from 'next/navigation'
 import { Suspense, lazy } from "react"
+import Image from 'next/image'
+import siteLogo from '../../public/pokematic.png'
+
 const PokeCard = lazy(() => import('../../components/PokeCard/PokeCard'))
 
 export default ({ pokemon, nextPage, previousPage, }) => {
@@ -16,7 +19,7 @@ export default ({ pokemon, nextPage, previousPage, }) => {
           <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
 
             <h2 className='pb-4'>
-              <img src='/pokematic.png' alt="Pokematic"></img>
+              <Image src={siteLogo} alt="Pokematic - the Internet Pokemon inder" priority />
             </h2>
             <h3 className='font-pokemon tracking-widest pb-16 text-3xl font-bold text-blue-600'>
               The Internet Pokemon index!

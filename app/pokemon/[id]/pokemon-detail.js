@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import TypeBadge from "../../../components/TypeBadge/TypeBadge"
 
-export default function PokemonDetail({ name, image, types, stats }) {
+export default ({ name, image, types, stats }) => {
 
   const router = useRouter()
 

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { Suspense, lazy } from "react"
 const PokeCard = lazy(() => import('../../components/PokeCard/PokeCard'))
 
-export default function HomePage({ pokemon, nextPage, previousPage, }) {
+export default ({ pokemon, nextPage, previousPage, }) => {
 
   const router = useRouter()
 

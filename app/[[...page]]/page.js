@@ -5,7 +5,8 @@ const pokemonPerPage = 6
 
 export default async function Home({params: { page }}) {
 
-  const {pokemon, previousPage, nextPage} = await getPokemon(page || 1)
+  const currentPage = parseInt(page || 1)
+  const {pokemon, previousPage, nextPage} = await getPokemon(currentPage)
 
   return <HomePage pokemon={pokemon} previousPage={previousPage} nextPage={nextPage} />
 }
@@ -29,7 +30,8 @@ export async function generateStaticParams () {
 
 const getPokemon = async (page) => {
 
-  const currentPage = parseInt(page) || 1
+  const currentPage = parseInt(page)
+
   const offset = (currentPage - 1) * pokemonPerPage
 
   const { data: pokeIndex} = await axios.get(

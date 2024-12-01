@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import '../styles/globals.css'
 
 export const metadata = {
@@ -21,7 +22,11 @@ const pokemon = localFont({
 export default function RootLayout({ children }) {
  return (
     <html lang="en">
-      <body className={`${pokemon.variable} font-sans`}>{children}</body>
+      <body className={`${pokemon.variable} font-sans`}>
+        <Suspense fallback={<p>Loading...</p>}>
+          {children}
+        </Suspense>
+      </body>
     </html>
   )
 }

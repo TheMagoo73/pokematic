@@ -1,12 +1,9 @@
-import axios from "axios"
 import Link from "next/link"
-import useSWR from 'swr'
 
-export default function PokeCard({id, ...props}) {
+export default async function PokeCard({id, ...props}) {
 
-  const fetcher = url => axios.get(url).then(res => res.data)
-
-  const { data: pokemon, error } = useSWR(`https://pokeapi.co/api/v2/pokemon/${id}`, fetcher) 
+  const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`) 
+  const pokemon = await data.json()
 
   return (
     <Link href={`/pokemon/${id}`}>
